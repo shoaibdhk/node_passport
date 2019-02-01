@@ -1,15 +1,15 @@
 // Declare the variable
 require('dotenv').config();
 
-const ejsLint = require('ejs-lint'),
-  chalk = require('chalk'),
+const chalk = require('chalk'),
   express = require('express'),
   flash = require('connect-flash'),
   session = require('express-session'),
   expressLayouts = require('express-ejs-layouts'),
   mongoose = require('mongoose'),
-  passport = require('passport'),
-  app = express();
+  passportSetup = require('./config/passport'),
+  app = express(),
+  passport = require('passport');
 
 // Parser and json
 app.use(express.urlencoded({ extended: false }));
@@ -25,7 +25,7 @@ app.use(
 );
 
 // Passport Middleware
-require('./config/passport')(passport);
+// require('./config/passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 

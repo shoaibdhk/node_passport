@@ -28,9 +28,9 @@ router.post('/register', async (req, res) => {
     const newUser = await user.save();
     req.flash('success_msg', 'You are now registered');
     res.redirect('/users/login');
-  } catch (err) {
-    if (err.errors && err) {
-      Object.keys(err.errors).forEach(key => errors.push({ msg: err.errors[key].message }));
+  } catch (e) {
+    if (e.errors && e) {
+      Object.keys(e.errors).forEach(key => errors.push({ msg: e.errors[key].message }));
     }
     // res.status(400).json(err);
     res.status(400).render('register', { errors, name, email, password, password2 });
@@ -52,5 +52,18 @@ router.get('/logout', (req, res) => {
   req.logOut();
   req.flash('success_msg', 'you are logged out');
   res.redirect('/users/login');
+});
+
+// Login with google
+router.get(
+  '/google',
+  passport.authenticate('google', {
+    scope: ['profile', 'email']
+  })
+);
+
+// Callback route for google to redirect to
+router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
+  res.send('You have reached to the google URI');
 });
 module.exports = router;
