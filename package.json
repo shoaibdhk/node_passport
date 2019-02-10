@@ -4,8 +4,8 @@
   "main": "server.js",
   "license": "MIT",
   "scripts": {
-    "start": "node server",
-    "dev": "nodemon server"
+    "start": "node -r esm",
+    "dev": "nodemon -r esm"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -14,13 +14,14 @@
     "dotenv": "^6.2.0",
     "ejs": "^2.6.1",
     "ejs-lint": "^0.3.0",
+    "esm": "^3.2.0",
     "express": "^4.16.4",
     "express-ejs-layouts": "^2.5.0",
     "express-session": "^1.15.6",
     "mongoose": "^5.4.7",
     "mongoose-beautiful-unique-validation": "^7.1.1",
     "passport": "^0.4.0",
-    "passport-google-oauth20": "^1.0.0",
+    "passport-google-oauth2": "^0.1.6",
     "passport-local": "^1.0.0"
   }
 }
